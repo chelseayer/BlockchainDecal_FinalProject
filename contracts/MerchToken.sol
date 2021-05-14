@@ -87,7 +87,7 @@ contract MerchToken is ERC721, Ownable {
         });
 
         //*****TO:DO****** once a token is minted, tell the contract by changing one variable
-        _forSale = true;
+        index += 1;
 
         emit MerchToken(msg.sender, index);
     }
@@ -140,7 +140,7 @@ contract MerchToken is ERC721, Ownable {
     //******TO DO************
     // Changes the price that must be paid to buy a particular token
     function changePrice(uint256 _tokenId, uint256 _newPrice) public {
-        require(_newPrice > 0);  // ensure price nonzero
+        require(_newPrice != 0);  // ensure price nonzero
         require(tokenInfos[_tokenId].price > 0); // ensure token exists
         require(msg.sender == ownerOf(_tokenId)); 
         tokenInfos[_tokenId].price = _newPrice;
